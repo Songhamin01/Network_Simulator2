@@ -3,17 +3,9 @@
 #include <iostream>
 #include <vector>
 
-EchoService::~EchoService()
-{
-    // for(Packet *p : pac)
-    // {
-    //     delete p;
-    // }
-}
-
 void EchoService::result(Packet *p)
 {
-    std::string m = "received \"" + packets->dataString() + "\" from " + packets->srcAddress().toString() + ":" + std::to_string(packets->srcPort()) + " send reply with same data";
+    std::string m = "received \"" + p->dataString() + "\" from " + p->srcAddress().toString() + ":" + std::to_string(p->srcPort()) + " send reply with same data";
     log(m);
     send(p);
     delete p;

@@ -18,7 +18,6 @@ private:
   virtual std::string name(){ return "EchoService"; }
 
 public:
-  ~EchoService();
   void send(Packet *p);
   void result(Packet *p);
 };

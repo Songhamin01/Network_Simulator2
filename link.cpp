@@ -10,7 +10,6 @@ void Link::whatLink(Node *n, Packet *p)
     std::string m = "packet in: ";
     m += p->toString() + " from " + n->toString();
     log(m);
-
     std::function<void()> f = [n, p, this]()->void
     {
         std::string m = "packet out: ";

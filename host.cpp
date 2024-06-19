@@ -15,10 +15,10 @@ Host::~Host()
 // 링크를 랜덤으로 하나 선택하여 패킷을 전송한다.
 void Host::send(Packet *packet)
 {
-    int num = rand() % links_.size();
     std::string m = "sending packet: " + packet->toString();
     log(m);
-    links_.at(num)->whatLink(this, packet);
+    int num = rand() % links_.size();
+    links_[num]->whatLink(this, packet);
 }
 
 void Host::receiving(Packet *p)
@@ -27,7 +27,7 @@ void Host::receiving(Packet *p)
     std::string m = "received packet: " + p->toString();
     for(int i = 0; i < (int)services_.size(); ++i)
     {
-        if(services_[i]->getPort() == packets->destPort())
+        if(services_[i]->getPort() == p->destPort())
         {
             m += ", forwarding to " + services_[i]->toString();
             log(m);
@@ -41,7 +41,7 @@ void Host::receiving(Packet *p)
     {
         m = "no service for packet: " + p->toString();
         log(m);
-        delete packets;
+        delete p;
     }
     
 }

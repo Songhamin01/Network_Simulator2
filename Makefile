@@ -55,7 +55,7 @@ forth.o: scenarios/forth.cpp echo_service.h message_service.h echo_service_insta
 	$(CC) $(CFLAGS) -c -o forth.o scenarios/forth.cpp
 
 first: first.o echo_service.o echo_service_installer.o host.o link_installer.o manual_router.o message_service_installer.o message_service.o node.o service_installer.o link.o router.o simulator.o object.o
-	$(CC) $(CFLAGS) -o first first.o echo_service.o echo_service_installer.o host.o link_installer.o manual_router.o message_service_installer.o message_service.o node.o service_installer.o link.o router.o 
+	$(CC) $(CFLAGS) -o first first.o echo_service.o echo_service_installer.o host.o link_installer.o manual_router.o message_service_installer.o message_service.o node.o service_installer.o link.o router.o simulator.o object.o
 
 second: second.o echo_service.o echo_service_installer.o host.o link_installer.o manual_router.o message_service_installer.o message_service.o node.o service_installer.o link.o router.o simulator.o object.o
 	$(CC) $(CFLAGS) -o second second.o echo_service.o echo_service_installer.o host.o link_installer.o manual_router.o message_service_installer.o message_service.o node.o service_installer.o link.o router.o simulator.o object.o

@@ -40,7 +40,8 @@ public:
     pqs.push(Schedule(time, function));
   }
 
-  static void run() {
+  static void run() 
+  {
     // 모든 스케줄을 실행한다.
     // TODO: 구현
     while (!pqs.empty())

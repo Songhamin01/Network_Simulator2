@@ -14,7 +14,7 @@ class BulkSendService : Service {
   friend class BulkSendServiceInstaller;
 
 private:
-  Packet *p;
+  // Packet *p;
   Address destAddr;
   short destP;
   double delay_;

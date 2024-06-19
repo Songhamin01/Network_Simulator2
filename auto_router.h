@@ -60,7 +60,6 @@ public:
       }
     }
 
-    std::vector<Link *> *linker = new std::vector<Link *>[nodes.size()];
     for(int i = 0; i < nodes.size(); i++)
     {
       if (nodes[i] == this)
@@ -72,7 +71,7 @@ public:
       d[i] = matrix[start][i];
     }
     v[start] = true;
-    for(int i = 0; i < nodes.size()-1; i++)
+    for(int i = 0; i < nodes.size()-2; i++)
     {
       int cur = getSmallIndex(nodes);
       v[cur] = true;
@@ -87,7 +86,8 @@ public:
       }
     }
 
-    for(int i = 0; i < nodes.size(); i++) {
+    for(int i = 0; i < nodes.size(); i++) 
+    {
       Node* node = nodes[i];
       Host* host = dynamic_cast<Host*>(node);
       if(host != nullptr) 
@@ -98,6 +98,11 @@ public:
         routingTable_.push_back(re);
       }
     }
+
+    vec->clear();
+    linker->clear();
+    delete[] vec;
+    delete[] linker;
   }
 };
 
