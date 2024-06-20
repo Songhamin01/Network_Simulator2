@@ -56,7 +56,13 @@ public:
           {
             matrix[i][j] = l->delay();
             matrix[j][i] = l->delay();
-            vec[i].push_back(std::make_pair(i, l));
+            for (int x = 0; x < nodes.size(); x++)
+            {
+              if (nodes[x] == l->other(nodes[i]))
+              {
+                vec[i].push_back(std::make_pair(x, l));
+              }
+            }
           }
 
           if(i == j)
@@ -64,15 +70,6 @@ public:
         }
       }
     }
-
-      // for(int i = 0; i < nodes.size(); i++)
-      // {
-      //   for(int j = 0; j < nodes.size(); j++) {
-      //     std::cout << matrix[i][j] << std::endl;
-      //   }
-      //   std::cout << std::endl;
-      // } 
-
 
     for(int i = 0; i < nodes.size(); i++)
     {
@@ -87,28 +84,30 @@ public:
     {
       d[i] = matrix[start][i];
     }
-    // for(int i = 0; i < nodes.size(); i++)
-    // {
-    //   std::cout << d[i] << std::endl;
-    // }
 
     v[start] = true;
     for(int i = 0; i < nodes.size()-1; i++)
     {
       int cur = getSmallIndex(nodes);
       v[cur] = true;
+      std::vector<Link *> path;
       for(int j = 0; j < nodes.size(); j++)
       {
         if(!v[j])
         {
-          std::cout << i << ", " << j << ", " << cur << std::endl;
-          std::cout << d[cur] << ", " << matrix[cur][j] << ", " << d[j] << std::endl;
-          std::cout << std::endl;
           if(d[cur] + matrix[cur][j] < d[j])
           {
             d[j] = d[cur] + matrix[cur][j];
-            linker[j].push_back(vec[i][j].second);
+            int next = getSmallIndex(nodes);
+            for(int k = 0; k < vec[i].size(); k++)
+            {
+              if (vec[i][k].first == next)
+              {
+                path.push_back(vec[i][k].second);
+              }
+            }
           }
+          linker[j] = path;
         }
       }
     }
